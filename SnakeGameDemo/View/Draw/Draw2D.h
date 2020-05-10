@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SnakePosition.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Draw2D : UIView
 
-@property NSInteger snakeCurrentXPosition;
-
-@property NSInteger snakeCurrentYPosition;
-
-@property NSArray *lines;
+@property (strong, nonatomic)NSArray<SnakePosition *> *lines;
 
 @end
 

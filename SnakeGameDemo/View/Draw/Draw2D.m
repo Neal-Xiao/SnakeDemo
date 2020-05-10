@@ -20,7 +20,6 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -28,17 +27,27 @@
     
     CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
     
-    CGContextMoveToPoint(context, self.snakeCurrentXPosition, self.snakeCurrentYPosition);
+//    CGContextMoveToPoint(context, self.snakeCurrentXPosition, self.snakeCurrentYPosition);
+//
+//    CGContextAddLineToPoint(context, self.snakeCurrentXPosition,
+//                            self.snakeCurrentYPosition);
     
-    CGContextAddLineToPoint(context, self.snakeCurrentXPosition,
-                            self.snakeCurrentYPosition);
+    CGPoint points[self.lines.count];
     
-    CGPoint points[] = {
-        CGPointMake(0, 0)
-    };
+    if (!self.lines) {
         
-    CGContextStrokePath(context);
-}
+    } else {
+                
+        for (int i = 0; i <= self.lines.count - 1; i++) {
+            points[i] = CGPointMake(self.lines[i].snakeXPosition, self.lines[i].snakeYPosition);
 
+        }
+        
+        CGContextAddLines(context, points, self.lines.count);
+                
+        CGContextStrokePath(context);
+    }
+    
+}
 
 @end

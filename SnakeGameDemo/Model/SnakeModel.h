@@ -7,16 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameViewController.h"
+#import "SnakePosition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SnakeModel : NSObject
 
-@property NSArray *positionArray;
+@property (strong, nonatomic)NSArray<SnakePosition *> *positionArray;
 
-@property NSInteger *xPosition;
+@property DirectionType *snakeDirectionType;
 
-@property NSInteger *yPosition;
+- (void)snakeMoveOnePoint:(DirectionType *)direction;
+
+- (NSArray *)snakeAddLengh:(NSArray *)snakePositionArray;
+
+- (BOOL)snakeIsTouchBody:(NSArray *)snakePositionArray;
+
+- (BOOL)snakeIsTouchPoint:(CGPoint *)point;
 
 @end
 
