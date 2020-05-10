@@ -7,23 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1957660524667A4B00F8D340 /* Draw2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1957660424667A4B00F8D340 /* Draw2D.m */; };
+		195766092467A7CD00F8D340 /* SnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 195766082467A7CD00F8D340 /* SnakeModel.m */; };
 		198B410F24653DCE000B80F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B410E24653DCE000B80F3 /* AppDelegate.m */; };
-		198B411524653DCE000B80F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B411424653DCE000B80F3 /* ViewController.m */; };
+		198B411524653DCE000B80F3 /* GameStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B411424653DCE000B80F3 /* GameStartViewController.m */; };
 		198B411A24653DCF000B80F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 198B411924653DCF000B80F3 /* Assets.xcassets */; };
 		198B411D24653DCF000B80F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198B411B24653DCF000B80F3 /* LaunchScreen.storyboard */; };
 		198B412024653DCF000B80F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B411F24653DCF000B80F3 /* main.m */; };
+		198B412C24654218000B80F3 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B412B24654218000B80F3 /* GameViewController.m */; };
+		FEA8149C2BCB5BBDFD1B42F7 /* libPods-SnakeGameDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCD585633A60DFABA138F45 /* libPods-SnakeGameDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1957660324667A4B00F8D340 /* Draw2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Draw2D.h; path = SnakeGameDemo/View/Draw/Draw2D.h; sourceTree = SOURCE_ROOT; };
+		1957660424667A4B00F8D340 /* Draw2D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Draw2D.m; path = SnakeGameDemo/View/Draw/Draw2D.m; sourceTree = SOURCE_ROOT; };
+		195766072467A7CD00F8D340 /* SnakeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnakeModel.h; sourceTree = "<group>"; };
+		195766082467A7CD00F8D340 /* SnakeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeModel.m; sourceTree = "<group>"; };
 		198B410A24653DCE000B80F3 /* SnakeGameDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnakeGameDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		198B410D24653DCE000B80F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		198B410E24653DCE000B80F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		198B411324653DCE000B80F3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		198B411424653DCE000B80F3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		198B411324653DCE000B80F3 /* GameStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStartViewController.h; sourceTree = "<group>"; };
+		198B411424653DCE000B80F3 /* GameStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameStartViewController.m; sourceTree = "<group>"; };
 		198B411924653DCF000B80F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		198B411C24653DCF000B80F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		198B411E24653DCF000B80F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		198B411F24653DCF000B80F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		198B412A24654218000B80F3 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = SnakeGameDemo/Controller/GamePage/GameViewController.h; sourceTree = SOURCE_ROOT; };
+		198B412B24654218000B80F3 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = SnakeGameDemo/Controller/GamePage/GameViewController.m; sourceTree = SOURCE_ROOT; };
+		73A09E6D4B5A0FD3348282CF /* Pods-SnakeGameDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnakeGameDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnakeGameDemo/Pods-SnakeGameDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		7B8830305B276C98BB5BA62A /* Pods-SnakeGameDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnakeGameDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnakeGameDemo/Pods-SnakeGameDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9BCD585633A60DFABA138F45 /* libPods-SnakeGameDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SnakeGameDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +44,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA8149C2BCB5BBDFD1B42F7 /* libPods-SnakeGameDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1957660624667A5100F8D340 /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				1957660324667A4B00F8D340 /* Draw2D.h */,
+				1957660424667A4B00F8D340 /* Draw2D.m */,
+			);
+			path = Draw;
+			sourceTree = "<group>";
+		};
 		198B410124653DCE000B80F3 = {
 			isa = PBXGroup;
 			children = (
 				198B410C24653DCE000B80F3 /* SnakeGameDemo */,
 				198B410B24653DCE000B80F3 /* Products */,
+				5F9B0469F56210E25006EE2D /* Pods */,
+				1D70F517E7A6F3F021D85358 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,14 +83,84 @@
 			children = (
 				198B410D24653DCE000B80F3 /* AppDelegate.h */,
 				198B410E24653DCE000B80F3 /* AppDelegate.m */,
-				198B411324653DCE000B80F3 /* ViewController.h */,
-				198B411424653DCE000B80F3 /* ViewController.m */,
-				198B411924653DCF000B80F3 /* Assets.xcassets */,
-				198B411B24653DCF000B80F3 /* LaunchScreen.storyboard */,
+				198B41292465413B000B80F3 /* Resource */,
+				198B412824654129000B80F3 /* Model */,
+				198B412724654120000B80F3 /* View */,
+				198B412624654103000B80F3 /* Controller */,
 				198B411E24653DCF000B80F3 /* Info.plist */,
 				198B411F24653DCF000B80F3 /* main.m */,
 			);
 			path = SnakeGameDemo;
+			sourceTree = "<group>";
+		};
+		198B412624654103000B80F3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				198B412E24654233000B80F3 /* GamePage */,
+				198B412D2465421D000B80F3 /* StartPage */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		198B412724654120000B80F3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1957660624667A5100F8D340 /* Draw */,
+				198B411B24653DCF000B80F3 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		198B412824654129000B80F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				195766072467A7CD00F8D340 /* SnakeModel.h */,
+				195766082467A7CD00F8D340 /* SnakeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		198B41292465413B000B80F3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				198B411924653DCF000B80F3 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		198B412D2465421D000B80F3 /* StartPage */ = {
+			isa = PBXGroup;
+			children = (
+				198B411324653DCE000B80F3 /* GameStartViewController.h */,
+				198B411424653DCE000B80F3 /* GameStartViewController.m */,
+			);
+			path = StartPage;
+			sourceTree = "<group>";
+		};
+		198B412E24654233000B80F3 /* GamePage */ = {
+			isa = PBXGroup;
+			children = (
+				198B412A24654218000B80F3 /* GameViewController.h */,
+				198B412B24654218000B80F3 /* GameViewController.m */,
+			);
+			path = GamePage;
+			sourceTree = "<group>";
+		};
+		1D70F517E7A6F3F021D85358 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BCD585633A60DFABA138F45 /* libPods-SnakeGameDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5F9B0469F56210E25006EE2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				73A09E6D4B5A0FD3348282CF /* Pods-SnakeGameDemo.debug.xcconfig */,
+				7B8830305B276C98BB5BA62A /* Pods-SnakeGameDemo.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,6 +170,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 198B412324653DCF000B80F3 /* Build configuration list for PBXNativeTarget "SnakeGameDemo" */;
 			buildPhases = (
+				BD59234953B7D1887A6F22DB /* [CP] Check Pods Manifest.lock */,
 				198B410624653DCE000B80F3 /* Sources */,
 				198B410724653DCE000B80F3 /* Frameworks */,
 				198B410824653DCE000B80F3 /* Resources */,
@@ -132,12 +228,40 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BD59234953B7D1887A6F22DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SnakeGameDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		198B410624653DCE000B80F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				198B411524653DCE000B80F3 /* ViewController.m in Sources */,
+				195766092467A7CD00F8D340 /* SnakeModel.m in Sources */,
+				1957660524667A4B00F8D340 /* Draw2D.m in Sources */,
+				198B412C24654218000B80F3 /* GameViewController.m in Sources */,
+				198B411524653DCE000B80F3 /* GameStartViewController.m in Sources */,
 				198B410F24653DCE000B80F3 /* AppDelegate.m in Sources */,
 				198B412024653DCF000B80F3 /* main.m in Sources */,
 			);
@@ -269,6 +393,7 @@
 		};
 		198B412424653DCF000B80F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73A09E6D4B5A0FD3348282CF /* Pods-SnakeGameDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +411,7 @@
 		};
 		198B412524653DCF000B80F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B8830305B276C98BB5BA62A /* Pods-SnakeGameDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
