@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GameStartViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,20 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    [self.window makeKeyAndVisible];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    GameStartViewController *gameStartPage = [[GameStartViewController alloc] init];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameStartPage];
+    
+    self.window.rootViewController = navigationController;
     return YES;
 }
 
