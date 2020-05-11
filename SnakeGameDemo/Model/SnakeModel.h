@@ -15,12 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SnakeModel : NSObject
 
 @property (strong, nonatomic)NSArray<SnakePosition *> *positionArray;
+@property DirectionType snakeDirectionType;
+@property DirectionType previousDirectionType;
 
-@property DirectionType *snakeDirectionType;
+- (NSArray *)snakeMoveOneStep;
 
-- (void)snakeMoveOnePoint:(DirectionType *)direction;
-
-- (NSArray *)snakeAddLengh:(NSArray *)snakePositionArray;
+- (NSArray *)snakeAddLengh;
 
 - (BOOL)snakeIsTouchBody:(NSArray *)snakePositionArray;
 

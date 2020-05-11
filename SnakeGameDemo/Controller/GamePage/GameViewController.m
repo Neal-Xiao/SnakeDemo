@@ -14,6 +14,13 @@
 
 @interface GameViewController ()
 
+@property Draw2D *drawView;
+@property DirectionType snackDirectionTYpe;
+@property DirectionType previousDirectionType;
+@property SnakePosition *snakePosition;
+@property SnakeModel *snakeModel;
+@property NSTimer *timer;
+
 @end
 
 @implementation GameViewController
@@ -25,43 +32,63 @@
     
     self.navigationItem.title = @"GamePage";
     
-    [self draw2DView];
+    [self initDrawView];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(snakeMove) userInfo:nil repeats:true];
+    
 }
 
--(void)draw2DView {
+- (void)initDrawView {
     
-    Draw2D *drawView = [[Draw2D alloc] init];
+    self.drawView = [[Draw2D alloc] init];
     
-    [self.view addSubview:drawView];
+    [self.view addSubview:self.drawView];
     
-    drawView.translatesAutoresizingMaskIntoConstraints = false;
+    self.drawView.translatesAutoresizingMaskIntoConstraints = false;
     
-    [drawView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     
-    SnakeModel *snakeModel = [[SnakeModel alloc] init];
+    self.snakeModel = [[SnakeModel alloc] init];
     
-    NSArray *snakePositionArray = snakeModel.positionArray;
+    self.snakeModel.snakeDirectionType = DirectionTypeTop;
     
-    NSMutableArray<SnakePosition *> *positionArray = [[NSMutableArray alloc] init];
+    self.snakeModel.previousDirectionType = DirectionTypeLeft;
     
-    for (int i = 1; i <= 3; i++) {
+    NSMutableArray<SnakePosition *> *mutablePositionArray = [[NSMutableArray<SnakePosition *> alloc] init];
+    
+    for (int i = 0; i <= 1; i++) {
         
-        SnakePosition *position = [[SnakePosition alloc] init];
+        self.snakePosition = [[SnakePosition alloc] init];
         
-        position.snakeXPosition = 100 * i;
+        if (i == 0) {
+            
+            self.snakePosition.snakeXPosition = self.view.frame.size.width / 2 - 30;
+            
+            self.snakePosition.snakeYPosition = self.view.frame.size.height / 2;
+            
+        } else {
+            
+            self.snakePosition.snakeXPosition = self.view.frame.size.width / 2;
+            
+            self.snakePosition.snakeYPosition = self.view.frame.size.height / 2;
+        }
         
-        position.snakeYPosition = 100 * i;
-        
-        [positionArray addObject:position];
+        [mutablePositionArray addObject:self.snakePosition];
     }
+        
+    self.snakeModel.positionArray = mutablePositionArray;
     
-    snakePositionArray = positionArray;
+    self.drawView.lines = self.snakeModel.positionArray;
+}
+
+
+- (void)snakeMove {
+        
+    self.drawView.lines = [self.snakeModel snakeMoveOneStep];
     
-    drawView.lines = [[NSArray<SnakePosition *> alloc] init];
-    
-    drawView.lines = snakePositionArray;
+    [self.drawView setNeedsDisplay];
 }
 
 @end

@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SnakePosition : NSObject
 
 @property NSInteger snakeXPosition;
-
 @property NSInteger snakeYPosition;
 
 @end

@@ -59,7 +59,6 @@
     
     [self showViewController:gameViewController sender:nil];
     
-//    [self presentViewController:gameViewController animated:true completion:nil];
 }
 
 @end
