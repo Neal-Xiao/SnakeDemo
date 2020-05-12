@@ -37,7 +37,7 @@
                 
         for (int i = 0; i <= self.lines.count - 1; i++) {
             
-            points[i] = CGPointMake(self.lines[i].snakeXPosition, self.lines[i].snakeYPosition);
+            points[i] = CGPointMake(self.lines[i].x, self.lines[i].y);
 
         }
         

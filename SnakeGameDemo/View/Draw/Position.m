@@ -6,8 +6,8 @@
 //  Copyright © 2020 NealXiao. All rights reserved.
 //
 
-#import "SnakePosition.h"
+#import "Position.h"
 
-@implementation SnakePosition
+@implementation Position
 
 @end

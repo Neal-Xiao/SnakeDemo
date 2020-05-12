@@ -10,7 +10,7 @@
 
 @interface GameStartViewController : UIViewController
 
-@property (nonatomic)UIButton *startButton;
+@property (nonatomic, strong) UIButton *startButton;
 
 @end
 
