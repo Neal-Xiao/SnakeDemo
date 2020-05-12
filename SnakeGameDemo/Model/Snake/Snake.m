@@ -8,7 +8,7 @@
 
 #import "Snake.h"
 
-static const NSUInteger kMoveConstant = 30;
+static const NSUInteger kMoveConstant = 10;
 
 @interface Snake()
 

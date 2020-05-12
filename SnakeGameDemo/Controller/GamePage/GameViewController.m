@@ -11,8 +11,11 @@
 #import <Masonry.h>
 #import "Snake.h"
 #import "Position.h"
+#import "Fruit.h"
 
-static const NSUInteger kSnakeDefaultBodyLength = 30;
+static const NSUInteger kSnakeDefaultBodyLength = 10;
+
+static const NSUInteger kFruitDefaultBodyLength = 5;
 
 @interface GameViewController ()
 
@@ -21,6 +24,7 @@ static const NSUInteger kSnakeDefaultBodyLength = 30;
 @property (nonatomic, assign) SnakeDirection previousDirection;
 @property (nonatomic, strong) Position *position;
 @property (nonatomic, strong) Snake *snake;
+@property (nonatomic, strong) Fruit *fruit;
 @property (nonatomic, copy) NSArray *swipeGestureDirectionList;
 @property NSTimer *timer;
 
@@ -52,7 +56,7 @@ static const NSUInteger kSnakeDefaultBodyLength = 30;
 - (void)initDrawView {
     
     self.drawView = [[Draw2D alloc] init];
-    
+        
     [self.view addSubview:self.drawView];
     
     [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,8 +65,8 @@ static const NSUInteger kSnakeDefaultBodyLength = 30;
     
     self.snake.turnDirection = SnakeDirectionLeft;
     
-    NSMutableArray<Position *> *mutablePositionArray = [[NSMutableArray<Position *> alloc] init];
-    
+    NSMutableArray<Position *> *mutablePositionList = [[NSMutableArray<Position *> alloc] init];
+        
     for (int i = 0; i <= 1; i++) {
         
         self.position = [[Position alloc] init];
@@ -80,12 +84,26 @@ static const NSUInteger kSnakeDefaultBodyLength = 30;
             self.position.y = self.view.frame.size.height / 2;
         }
         
-        [mutablePositionArray addObject:self.position];
+        [mutablePositionList addObject:self.position];
     }
     
-    self.snake.positionList = mutablePositionArray;
+    self.snake.positionList = mutablePositionList;
+    
+    [self randomFruit];
+    
+    self.drawView.fruit = self.fruit;
     
     self.drawView.lines = self.snake.positionList;
+}
+
+- (void)randomFruit {
+    
+    self.fruit = [[Fruit alloc] init];
+    
+    self.fruit.x = (arc4random() % (int)self.view.frame.size.width - 10) + 10;
+    
+    self.fruit.y = (arc4random() % (int)self.view.frame.size.height - 10) + 10;
+    
 }
 
 - (void)setupSnakeSwipeGestureRecognizerUp {

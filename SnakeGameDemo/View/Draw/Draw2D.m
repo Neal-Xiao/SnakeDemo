@@ -42,6 +42,8 @@
         }
         
         CGContextAddLines(context, points, self.lines.count);
+        
+        CGContextAddRect(context, CGRectMake(self.fruit.x, self.fruit.y, 5, 5));
                 
         CGContextStrokePath(context);
     }
