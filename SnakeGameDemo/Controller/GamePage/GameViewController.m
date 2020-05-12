@@ -9,10 +9,20 @@
 #import "GameViewController.h"
 #import "Draw2D.h"
 #import <Masonry.h>
-#import "SnakeModel.h"
-#import "SnakePosition.h"
+#import "Snake.h"
+#import "Position.h"
+
+static const NSUInteger kSnakeDefaultBodyLength = 30;
 
 @interface GameViewController ()
+
+@property (nonatomic, strong) Draw2D *drawView;
+@property (nonatomic, assign) SnakeDirection turnDireciton;
+@property (nonatomic, assign) SnakeDirection previousDirection;
+@property (nonatomic, strong) Position *position;
+@property (nonatomic, strong) Snake *snake;
+@property (nonatomic, copy) NSArray *swipeGestureDirectionList;
+@property NSTimer *timer;
 
 @end
 
@@ -25,43 +35,154 @@
     
     self.navigationItem.title = @"GamePage";
     
-    [self draw2DView];
+    [self initDrawView];
+    
+    [self setupSnakeSwipeGestureRecognizerUp];
+    
+    [self setupSnakeSwipeGestureRecognizerLeft];
+    
+    [self setupSnakeSwipeGestureRecognizerDown];
+    
+    [self setupSnakeSwipeGestureRecognizerRight];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(snakeMove) userInfo:nil repeats:true];
+    
 }
 
--(void)draw2DView {
+- (void)initDrawView {
     
-    Draw2D *drawView = [[Draw2D alloc] init];
+    self.drawView = [[Draw2D alloc] init];
     
-    [self.view addSubview:drawView];
+    [self.view addSubview:self.drawView];
     
-    drawView.translatesAutoresizingMaskIntoConstraints = false;
-    
-    [drawView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     
-    SnakeModel *snakeModel = [[SnakeModel alloc] init];
+    self.snake.turnDirection = SnakeDirectionLeft;
     
-    NSArray *snakePositionArray = snakeModel.positionArray;
+    NSMutableArray<Position *> *mutablePositionArray = [[NSMutableArray<Position *> alloc] init];
     
-    NSMutableArray<SnakePosition *> *positionArray = [[NSMutableArray alloc] init];
-    
-    for (int i = 1; i <= 3; i++) {
+    for (int i = 0; i <= 1; i++) {
         
-        SnakePosition *position = [[SnakePosition alloc] init];
+        self.position = [[Position alloc] init];
         
-        position.snakeXPosition = 100 * i;
+        if (i == 0) {
+            
+            self.position.x = self.view.frame.size.width / 2 - kSnakeDefaultBodyLength;
+            
+            self.position.y = self.view.frame.size.height / 2;
+            
+        } else {
+            
+            self.position.x = self.view.frame.size.width / 2;
+            
+            self.position.y = self.view.frame.size.height / 2;
+        }
         
-        position.snakeYPosition = 100 * i;
-        
-        [positionArray addObject:position];
+        [mutablePositionArray addObject:self.position];
     }
     
-    snakePositionArray = positionArray;
+    self.snake.positionList = mutablePositionArray;
     
-    drawView.lines = [[NSArray<SnakePosition *> alloc] init];
+    self.drawView.lines = self.snake.positionList;
+}
+
+- (void)setupSnakeSwipeGestureRecognizerUp {
     
-    drawView.lines = snakePositionArray;
+    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(snakeSwipeGestureHandler:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.drawView addGestureRecognizer:swipeGestureRecognizer];
+    
+}
+
+- (void)setupSnakeSwipeGestureRecognizerLeft {
+    
+    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(snakeSwipeGestureHandler:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.drawView addGestureRecognizer:swipeGestureRecognizer];
+    
+}
+
+- (void)setupSnakeSwipeGestureRecognizerDown {
+    
+    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(snakeSwipeGestureHandler:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.drawView addGestureRecognizer:swipeGestureRecognizer];
+    
+}
+
+- (void)setupSnakeSwipeGestureRecognizerRight {
+    
+    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(snakeSwipeGestureHandler:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.drawView addGestureRecognizer:swipeGestureRecognizer];
+    
+}
+
+- (void)snakeSwipeGestureHandler:(UISwipeGestureRecognizer *)recognizer {
+    
+    switch (recognizer.direction) {
+            
+        case UISwipeGestureRecognizerDirectionUp:
+            
+            self.snake.previousDirection = self.snake.turnDirection;
+            
+            self.snake.turnDirection = SnakeDirectionTop;
+            
+            [self snakeMove];
+            
+            break;
+            
+        case UISwipeGestureRecognizerDirectionLeft:
+            
+            self.snake.previousDirection = self.snake.turnDirection;
+            
+            self.snake.turnDirection = SnakeDirectionLeft;
+                        
+            [self snakeMove];
+            
+            break;
+            
+        case UISwipeGestureRecognizerDirectionDown:
+            
+            self.snake.previousDirection = self.snake.turnDirection;
+            
+            self.snake.turnDirection = SnakeDirectionBottom;
+                        
+            [self snakeMove];
+            
+            break;
+            
+        case UISwipeGestureRecognizerDirectionRight:
+            
+            self.snake.previousDirection = self.snake.turnDirection;
+            
+            self.snake.turnDirection = SnakeDirectionRight;
+                        
+            [self snakeMove];
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (void)snakeMove {
+    
+    self.drawView.lines = [self.snake moveOneStep];
+    
+    [self.drawView setNeedsDisplay];
+}
+
+
+- (Snake *)snake {
+    if (!_snake) {
+        _snake = [[Snake alloc] init];
+    }
+    return _snake;
 }
 
 @end

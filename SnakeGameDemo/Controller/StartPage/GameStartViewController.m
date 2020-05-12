@@ -17,6 +17,7 @@
 @implementation GameStartViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -59,7 +60,6 @@
     
     [self showViewController:gameViewController sender:nil];
     
-//    [self presentViewController:gameViewController animated:true completion:nil];
 }
 
 @end

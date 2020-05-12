@@ -23,14 +23,11 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
+    UIGraphicsPushContext(context);
+    
     CGContextSetLineWidth(context, 5);
     
     CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
-    
-//    CGContextMoveToPoint(context, self.snakeCurrentXPosition, self.snakeCurrentYPosition);
-//
-//    CGContextAddLineToPoint(context, self.snakeCurrentXPosition,
-//                            self.snakeCurrentYPosition);
     
     CGPoint points[self.lines.count];
     
@@ -39,7 +36,8 @@
     } else {
                 
         for (int i = 0; i <= self.lines.count - 1; i++) {
-            points[i] = CGPointMake(self.lines[i].snakeXPosition, self.lines[i].snakeYPosition);
+            
+            points[i] = CGPointMake(self.lines[i].x, self.lines[i].y);
 
         }
         
@@ -47,6 +45,8 @@
                 
         CGContextStrokePath(context);
     }
+    
+    UIGraphicsPopContext();
     
 }
 

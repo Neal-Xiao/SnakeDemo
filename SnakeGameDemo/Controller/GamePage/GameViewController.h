@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, DirectionType) {
-    DirectionTypeTop,
-    DirectionTypeLeft,
-    DirectionTypeBottom,
-    DirectionTypeRight,
+typedef NS_ENUM(NSUInteger, SnakeDirection) {
+    SnakeDirectionTop,
+    SnakeDirectionLeft,
+    SnakeDirectionBottom,
+    SnakeDirectionRight,
 };
 
 @interface GameViewController : UIViewController

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1957660524667A4B00F8D340 /* Draw2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1957660424667A4B00F8D340 /* Draw2D.m */; };
-		195766092467A7CD00F8D340 /* SnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 195766082467A7CD00F8D340 /* SnakeModel.m */; };
-		1957660C2467F34B00F8D340 /* SnakePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1957660B2467F34B00F8D340 /* SnakePosition.m */; };
+		195766092467A7CD00F8D340 /* Snake.m in Sources */ = {isa = PBXBuildFile; fileRef = 195766082467A7CD00F8D340 /* Snake.m */; };
+		1957660C2467F34B00F8D340 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 1957660B2467F34B00F8D340 /* Position.m */; };
 		198B410F24653DCE000B80F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B410E24653DCE000B80F3 /* AppDelegate.m */; };
 		198B411524653DCE000B80F3 /* GameStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198B411424653DCE000B80F3 /* GameStartViewController.m */; };
 		198B411A24653DCF000B80F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 198B411924653DCF000B80F3 /* Assets.xcassets */; };
@@ -22,10 +22,10 @@
 /* Begin PBXFileReference section */
 		1957660324667A4B00F8D340 /* Draw2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Draw2D.h; path = SnakeGameDemo/View/Draw/Draw2D.h; sourceTree = SOURCE_ROOT; };
 		1957660424667A4B00F8D340 /* Draw2D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Draw2D.m; path = SnakeGameDemo/View/Draw/Draw2D.m; sourceTree = SOURCE_ROOT; };
-		195766072467A7CD00F8D340 /* SnakeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnakeModel.h; sourceTree = "<group>"; };
-		195766082467A7CD00F8D340 /* SnakeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeModel.m; sourceTree = "<group>"; };
-		1957660A2467F34B00F8D340 /* SnakePosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SnakePosition.h; path = SnakeGameDemo/View/Draw/SnakePosition.h; sourceTree = SOURCE_ROOT; };
-		1957660B2467F34B00F8D340 /* SnakePosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SnakePosition.m; path = SnakeGameDemo/View/Draw/SnakePosition.m; sourceTree = SOURCE_ROOT; };
+		195766072467A7CD00F8D340 /* Snake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snake.h; sourceTree = "<group>"; };
+		195766082467A7CD00F8D340 /* Snake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snake.m; sourceTree = "<group>"; };
+		1957660A2467F34B00F8D340 /* Position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Position.h; path = SnakeGameDemo/View/Draw/Position.h; sourceTree = SOURCE_ROOT; };
+		1957660B2467F34B00F8D340 /* Position.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Position.m; path = SnakeGameDemo/View/Draw/Position.m; sourceTree = SOURCE_ROOT; };
 		198B410A24653DCE000B80F3 /* SnakeGameDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnakeGameDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		198B410D24653DCE000B80F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		198B410E24653DCE000B80F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -117,10 +117,10 @@
 		198B412824654129000B80F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1957660A2467F34B00F8D340 /* SnakePosition.h */,
-				1957660B2467F34B00F8D340 /* SnakePosition.m */,
-				195766072467A7CD00F8D340 /* SnakeModel.h */,
-				195766082467A7CD00F8D340 /* SnakeModel.m */,
+				1957660A2467F34B00F8D340 /* Position.h */,
+				1957660B2467F34B00F8D340 /* Position.m */,
+				195766072467A7CD00F8D340 /* Snake.h */,
+				195766082467A7CD00F8D340 /* Snake.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,10 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195766092467A7CD00F8D340 /* SnakeModel.m in Sources */,
+				195766092467A7CD00F8D340 /* Snake.m in Sources */,
 				1957660524667A4B00F8D340 /* Draw2D.m in Sources */,
 				198B412C24654218000B80F3 /* GameViewController.m in Sources */,
-				1957660C2467F34B00F8D340 /* SnakePosition.m in Sources */,
+				1957660C2467F34B00F8D340 /* Position.m in Sources */,
 				198B411524653DCE000B80F3 /* GameStartViewController.m in Sources */,
 				198B410F24653DCE000B80F3 /* AppDelegate.m in Sources */,
 				198B412024653DCF000B80F3 /* main.m in Sources */,

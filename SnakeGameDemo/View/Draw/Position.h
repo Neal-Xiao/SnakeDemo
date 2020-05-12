@@ -10,11 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SnakePosition : NSObject
+@interface Position : NSObject
 
-@property NSInteger snakeXPosition;
-
-@property NSInteger snakeYPosition;
+@property (nonatomic, assign) NSInteger x;
+@property (nonatomic, assign) NSInteger y;
 
 @end
 
