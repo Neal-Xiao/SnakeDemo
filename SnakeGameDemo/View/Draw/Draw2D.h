@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Position.h"
-#import "Fruit.h"
+@class Position;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Draw2D : UIView
 
 @property (nonatomic, copy) NSArray<Position *> *lines;
-
-@property (nonatomic, strong) Fruit *fruit;
+@property (nonatomic, strong) Position *fruit;
 
 @end
 
