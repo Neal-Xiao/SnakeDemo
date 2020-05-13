@@ -7,7 +7,7 @@
 //
 
 #import "Draw2D.h"
-
+#import "Position.h"
 @implementation Draw2D
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -20,36 +20,20 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     UIGraphicsPushContext(context);
-    
-    CGContextSetLineWidth(context, 5);
-    
+    CGContextSetLineWidth(context, 1);
     CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
-    
-    CGPoint points[self.lines.count];
+    CGRect rects[self.lines.count];
     
     if (!self.lines) {
-        
-    } else {
-                
         for (int i = 0; i <= self.lines.count - 1; i++) {
-            
-            points[i] = CGPointMake(self.lines[i].x, self.lines[i].y);
-
+            rects[i] = CGRectMake(self.lines[i].x, self.lines[i].y, 5, 5);
         }
-        
-        CGContextAddLines(context, points, self.lines.count);
-        
+        CGContextAddRects(context, rects, self.lines.count);
         CGContextAddRect(context, CGRectMake(self.fruit.x, self.fruit.y, 5, 5));
-                
         CGContextStrokePath(context);
+        UIGraphicsPopContext();
     }
-    
-    UIGraphicsPopContext();
-    
 }
-
 @end

@@ -19,11 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) SnakeDirection previousDirection;
 
 - (NSArray *)moveOneStep;
-
 - (NSArray *)addLengh;
-
-- (BOOL)isTouchBody:(NSArray *)snakePositionArray;
-
+- (BOOL)isTouchBody;
 - (BOOL)isTouchPoint:(CGPoint *)point;
 
 @end
