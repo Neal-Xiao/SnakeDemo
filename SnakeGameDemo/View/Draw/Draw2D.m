@@ -26,7 +26,7 @@
     CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
     CGRect rects[self.lines.count];
     
-    if (!self.lines) {
+    if (self.lines) {
         for (int i = 0; i <= self.lines.count - 1; i++) {
             rects[i] = CGRectMake(self.lines[i].x, self.lines[i].y, 5, 5);
         }

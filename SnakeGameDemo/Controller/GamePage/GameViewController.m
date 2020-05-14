@@ -14,7 +14,7 @@
 #import "Fruit.h"
 
 static const NSUInteger kSnakeDefaultBodyLength = 10;
-static const NSUInteger kFruitGenerateRandomNumberRange = 10;
+static const NSUInteger kFruitGenerateRandomNumberRange = 20;
 
 @interface GameViewController ()
 
@@ -76,8 +76,17 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 10;
 #pragma mark - FruitRandomNumber
 
 - (void)fruitRandomNumber {
-    NSInteger x = (arc4random() % (int)self.view.frame.size.width - kFruitGenerateRandomNumberRange) + kFruitGenerateRandomNumberRange;
-    NSInteger y = (arc4random() % (int)self.view.frame.size.height - kFruitGenerateRandomNumberRange) + kFruitGenerateRandomNumberRange;
+//    NSInteger x = (arc4random() % (int)self.view.frame.size.width - kFruitGenerateRandomNumberRange)
+//    + kFruitGenerateRandomNumberRange;
+//    NSInteger y = (arc4random() % (int)self.view.frame.size.height - kFruitGenerateRandomNumberRange)
+//    + kFruitGenerateRandomNumberRange;
+    NSInteger x = kFruitGenerateRandomNumberRange + arc4random() %
+    ((int)(self.view.frame.size.width - (kFruitGenerateRandomNumberRange * 2))
+     - kFruitGenerateRandomNumberRange + 1);
+    NSInteger y = kFruitGenerateRandomNumberRange + arc4random() %
+    ((int)(self.view.frame.size.height - (kFruitGenerateRandomNumberRange * 2))
+     - kFruitGenerateRandomNumberRange + 1);
+    
     self.fruit = [[Position alloc] init];
     x = [self converNumberToTen:x];
     y = [self converNumberToTen:y];
@@ -151,7 +160,6 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 10;
 - (void)addSnakeLengh {
     if ([self.snake.positionList.firstObject isEqual:self.fruit]) {
         [self.snake addLengh];
-        [self fruitRandomNumber];
     }
 }
 
@@ -173,16 +181,15 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 10;
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:true
-                                 completion:^{
-            [self initDrawView];
-            self.timer = [NSTimer
-                          scheduledTimerWithTimeInterval:2
-                          target:self
-                          selector:@selector(snakeMove)
-                          userInfo:nil
-                          repeats:true
-                          ];
+                               [self dismissViewControllerAnimated:true
+                                     completion:^{ [self initDrawView];
+                               self.timer = [NSTimer
+                               scheduledTimerWithTimeInterval:2
+                               target:self
+                               selector:@selector(snakeMove)
+                               userInfo:nil
+                               repeats:true
+            ];
         }];
     }];
     
@@ -192,6 +199,8 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 10;
 }
 
 - (void)snakeMove {
+    NSLog(@"fruitX%ld", self.fruit.x);
+    NSLog(@"fruitY%ld", self.fruit.y);
     if ([self.snake isTouchBody]) {
         [self endGame];
     }
