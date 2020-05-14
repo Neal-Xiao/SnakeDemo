@@ -15,6 +15,9 @@ static const NSUInteger kMoveDistance = 10;
 @property (nonatomic, assign) NSInteger firstPoint;
 @property (nonatomic, strong) NSMutableArray<Position *> *snakeLenghList;
 
+- (BOOL)isVerticalDirection:(UISwipeGestureRecognizerDirection)direciton;
+- (BOOL)isHorizontalDireciton:(UISwipeGestureRecognizerDirection)direciton;
+
 @end
 
 @implementation Snake
@@ -185,4 +188,46 @@ static const NSUInteger kMoveDistance = 10;
     return false;
 }
 
+- (BOOL)isTouchWallWithX:(NSInteger)x y:(NSInteger)y {
+    
+    if (self.positionList.firstObject.x >= x || self.positionList.firstObject.x <=0) {
+        
+        return true;
+    }
+    
+    if (self.positionList.firstObject.y >= y || self.positionList.firstObject.y <=0) {
+        
+        return true;
+    }
+    
+    return false;
+}
+
+- (BOOL)isCorrectturnDirection{
+    if (([self isVerticalDirection:self.previousSwipeDirection] &&
+         [self isVerticalDirection:self.turnSwipeDirection]) ||
+        ([self isHorizontalDireciton:self.previousSwipeDirection] &&
+         [self isHorizontalDireciton:self.turnSwipeDirection])) {
+        return false;
+    }
+    return true;
+}
+
+- (BOOL)isVerticalDirection:(UISwipeGestureRecognizerDirection)direction {
+    
+    if (direction == UISwipeGestureRecognizerDirectionUp ||
+        direction == UISwipeGestureRecognizerDirectionDown) {
+        return true;
+    }
+    return false;
+}
+
+- (BOOL)isHorizontalDireciton:(UISwipeGestureRecognizerDirection)direction {
+    
+    if (direction == UISwipeGestureRecognizerDirectionRight ||
+        direction == UISwipeGestureRecognizerDirectionLeft) {
+        return true;
+    }
+    return false;
+}
 @end

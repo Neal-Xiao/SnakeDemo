@@ -23,6 +23,7 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
 @property (nonatomic, strong) Snake *snake;
 @property (nonatomic, strong) Position *fruit;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *swipeGestureRecognizer;
 
 @end
 
@@ -34,7 +35,7 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
     self.navigationItem.title = @"GamePage";
     [self initDrawView];
     [self addSnakeSwipeGesture];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
                                                   target:self
                                                 selector:@selector(snakeMove)
                                                 userInfo:nil
@@ -50,6 +51,9 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
         make.edges.equalTo(self.view);
     }];
     self.snake.turnDirection = SnakeDirectionLeft;
+    self.snake.previousDirection = SnakeDirectionLeft;
+    self.snake.turnSwipeDirection = UISwipeGestureRecognizerDirectionLeft;
+    self.snake.previousSwipeDirection = UISwipeGestureRecognizerDirectionLeft;
     NSMutableArray<Position *> *mutablePositionList = [[NSMutableArray<Position *> alloc] init];
     
     for (int i = 0; i <= 1; i++) {
@@ -76,10 +80,6 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
 #pragma mark - FruitRandomNumber
 
 - (void)fruitRandomNumber {
-//    NSInteger x = (arc4random() % (int)self.view.frame.size.width - kFruitGenerateRandomNumberRange)
-//    + kFruitGenerateRandomNumberRange;
-//    NSInteger y = (arc4random() % (int)self.view.frame.size.height - kFruitGenerateRandomNumberRange)
-//    + kFruitGenerateRandomNumberRange;
     NSInteger x = kFruitGenerateRandomNumberRange + arc4random() %
     ((int)(self.view.frame.size.width - (kFruitGenerateRandomNumberRange * 2))
      - kFruitGenerateRandomNumberRange + 1);
@@ -98,11 +98,10 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
 #pragma mark - SetupSwipeGesture
 
 - (void)setupSnakeSwipeGestureRecognizer:(UISwipeGestureRecognizerDirection)swipeGestureDireciton {
-    UISwipeGestureRecognizer *swipeGestureRecognizer =
-        [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                  action:@selector(snakeSwipeGestureHandler:)];
-    swipeGestureRecognizer.direction = swipeGestureDireciton;
-    [self.drawView addGestureRecognizer:swipeGestureRecognizer];
+    self.swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                            action:@selector(snakeSwipeGestureHandler:)];
+    self.swipeGestureRecognizer.direction = swipeGestureDireciton;
+    [self.drawView addGestureRecognizer:self.swipeGestureRecognizer];
 }
 
 - (void)addSnakeSwipeGesture {
@@ -113,28 +112,40 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
 }
 
 - (void)snakeSwipeGestureHandler:(UISwipeGestureRecognizer *)recognizer {
+    self.snake.turnSwipeDirection = recognizer.direction;
+    if (!self.snake.isCorrectturnDirection) {
+        return;
+    }
     switch (recognizer.direction) {
         case UISwipeGestureRecognizerDirectionUp:
             self.snake.previousDirection = self.snake.turnDirection;
             self.snake.turnDirection = SnakeDirectionTop;
+            self.snake.previousSwipeDirection = self.snake.turnSwipeDirection;
+            self.snake.turnSwipeDirection = UISwipeGestureRecognizerDirectionUp;
             [self snakeMove];
             break;
             
         case UISwipeGestureRecognizerDirectionLeft:
             self.snake.previousDirection = self.snake.turnDirection;
             self.snake.turnDirection = SnakeDirectionLeft;
+            self.snake.previousSwipeDirection = self.snake.turnSwipeDirection;
+            self.snake.turnSwipeDirection = UISwipeGestureRecognizerDirectionLeft;
             [self snakeMove];
             break;
             
         case UISwipeGestureRecognizerDirectionDown:
             self.snake.previousDirection = self.snake.turnDirection;
             self.snake.turnDirection = SnakeDirectionBottom;
+            self.snake.previousSwipeDirection = self.snake.turnSwipeDirection;
+            self.snake.turnSwipeDirection = UISwipeGestureRecognizerDirectionDown;
             [self snakeMove];
             break;
             
         case UISwipeGestureRecognizerDirectionRight:
             self.snake.previousDirection = self.snake.turnDirection;
             self.snake.turnDirection = SnakeDirectionRight;
+            self.snake.previousSwipeDirection = self.snake.turnSwipeDirection;
+            self.snake.turnSwipeDirection = UISwipeGestureRecognizerDirectionRight;
             [self snakeMove];
             break;
             
@@ -160,6 +171,7 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
 - (void)addSnakeLengh {
     if ([self.snake.positionList.firstObject isEqual:self.fruit]) {
         [self.snake addLengh];
+        [self fruitRandomNumber];
     }
 }
 
@@ -176,32 +188,46 @@ static const NSUInteger kFruitGenerateRandomNumberRange = 20;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"GameOver"
                                                                    message:@"Try again or leave"
                                                             preferredStyle:UIAlertControllerStyleAlert
-    ];
-    UIAlertAction *OKAction = [UIAlertAction
+                                ];
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:true completion:^{
+            [self clearObject];
+            [self.navigationController popViewControllerAnimated:true];
+        }];
+    }];
+    UIAlertAction *okAction = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * _Nonnull action) {
-                               [self dismissViewControllerAnimated:true
-                                     completion:^{ [self initDrawView];
-                               self.timer = [NSTimer
-                               scheduledTimerWithTimeInterval:2
-                               target:self
-                               selector:@selector(snakeMove)
-                               userInfo:nil
-                               repeats:true
-            ];
+        [self clearObject];
+        [self dismissViewControllerAnimated:true
+                                 completion:^{
+            [self initDrawView];
+            [self addSnakeSwipeGesture];
+            self.timer = [NSTimer
+                          scheduledTimerWithTimeInterval:0.2
+                          target:self
+                          selector:@selector(snakeMove)
+                          userInfo:nil
+                          repeats:true
+                          ];
         }];
     }];
-    
-    [alert addAction:OKAction];
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
     [self presentViewController:alert animated:true completion:nil];
-    [self clearObject];
 }
 
 - (void)snakeMove {
-    NSLog(@"fruitX%ld", self.fruit.x);
-    NSLog(@"fruitY%ld", self.fruit.y);
     if ([self.snake isTouchBody]) {
+        [self endGame];
+    }
+    if ([self.snake isTouchWallWithX:
+         self.view.frame.size.width
+        y:self.view.frame.size.height]) {
         [self endGame];
     }
     [self addSnakeLengh];
