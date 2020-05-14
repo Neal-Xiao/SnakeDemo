@@ -17,12 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<Position *> *positionList;
 @property (nonatomic, assign) SnakeDirection turnDirection;
 @property (nonatomic, assign) SnakeDirection previousDirection;
+@property (nonatomic, assign) UISwipeGestureRecognizerDirection previousSwipeDirection;
+@property (nonatomic, assign) UISwipeGestureRecognizerDirection turnSwipeDirection;
 
 - (NSArray *)moveOneStep;
 - (NSArray *)addLengh;
 - (BOOL)isTouchBody;
-- (BOOL)isTouchPoint:(CGPoint *)point;
-
+- (BOOL)isTouchWallWithX:(NSInteger)x y:(NSInteger)y;
+- (BOOL)isCorrectturnDirection;
 @end
 
 NS_ASSUME_NONNULL_END
